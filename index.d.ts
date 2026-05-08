@@ -1,4 +1,4 @@
-/**
+/*
 * @license Apache-2.0
 *
 * Copyright (c) 2025 The Stdlib Authors.
@@ -16,17 +16,21 @@
 * limitations under the License.
 */
 
-'use strict';
+// TypeScript Version: 4.1
+
+/// <reference types="https://cdn.jsdelivr.net/gh/stdlib-js/types@esm/index.d.ts"/>
+
+import { float32ndarray } from '@stdlib/types/ndarray';
 
 /**
-* Compute the arithmetic mean of a one-dimensional single-precision floating-point ndarray using a one-pass trial mean algorithm.
+* Computes the arithmetic mean of a one-dimensional single-precision floating-point ndarray using a one-pass trial mean algorithm.
 *
-* @module @stdlib/stats-base-ndarray-smeanli
+* @param arrays - array-like object containing an input ndarray
+* @returns arithmetic mean
 *
 * @example
 * var Float32Array = require( '@stdlib/array-float32' );
 * var ndarray = require( '@stdlib/ndarray-base-ctor' );
-* var smeanli = require( '@stdlib/stats-base-ndarray-smeanli' );
 *
 * var xbuf = new Float32Array( [ 1.0, 3.0, 4.0, 2.0 ] );
 * var x = new ndarray( 'float32', xbuf, [ 4 ], [ 1 ], 0, 'row-major' );
@@ -34,12 +38,9 @@
 * var v = smeanli( [ x ] );
 * // returns 2.5
 */
-
-// MODULES //
-
-var main = require( './main.js' );
+declare function smeanli( arrays: [ float32ndarray ] ): number;
 
 
 // EXPORTS //
 
-module.exports = main;
+export = smeanli;

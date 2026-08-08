@@ -56,14 +56,32 @@ The [arithmetic mean][arithmetic-mean] is defined as
 
 <!-- /.intro -->
 
+<section class="installation">
 
+## Installation
+
+```bash
+npm install @stdlib/stats-base-ndarray-smeanli
+```
+
+Alternatively,
+
+-   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
+-   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
+-   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
+
+The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
+
+To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
+
+</section>
 
 <section class="usage">
 
 ## Usage
 
 ```javascript
-import smeanli from 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-ndarray-smeanli@deno/mod.js';
+var smeanli = require( '@stdlib/stats-base-ndarray-smeanli' );
 ```
 
 #### smeanli( arrays )
@@ -71,7 +89,7 @@ import smeanli from 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-ndarray-sm
 Computes the [arithmetic mean][arithmetic-mean] of a one-dimensional single-precision floating-point ndarray using a one-pass trial mean algorithm.
 
 ```javascript
-import Float32Vector from 'https://cdn.jsdelivr.net/gh/stdlib-js/ndarray-vector-float32@deno/mod.js';
+var Float32Vector = require( '@stdlib/ndarray-vector-float32' );
 
 var x = new Float32Vector( [ 1.0, 3.0, 4.0, 2.0 ] );
 
@@ -105,9 +123,9 @@ The function has the following parameters:
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-import discreteUniform from 'https://cdn.jsdelivr.net/gh/stdlib-js/random-discrete-uniform@deno/mod.js';
-import ndarray2array from 'https://cdn.jsdelivr.net/gh/stdlib-js/ndarray-to-array@deno/mod.js';
-import smeanli from 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-ndarray-smeanli@deno/mod.js';
+var discreteUniform = require( '@stdlib/random-discrete-uniform' );
+var ndarray2array = require( '@stdlib/ndarray-to-array' );
+var smeanli = require( '@stdlib/stats-base-ndarray-smeanli' );
 
 var opts = {
     'dtype': 'float32'
@@ -122,6 +140,153 @@ console.log( v );
 </section>
 
 <!-- /.examples -->
+
+<!-- C interface documentation. -->
+
+* * *
+
+<section class="c">
+
+## C APIs
+
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+
+<section class="intro">
+
+</section>
+
+<!-- /.intro -->
+
+<!-- C usage documentation. -->
+
+<section class="usage">
+
+### Usage
+
+```c
+#include "stdlib/stats/base/ndarray/smeanli.h"
+```
+
+#### stdlib_stats_smeanli( arrays )
+
+Computes the arithmetic mean of a one-dimensional single-precision floating-point ndarray using a one-pass trial mean algorithm.
+
+```c
+#include "stdlib/ndarray/ctor.h"
+#include "stdlib/ndarray/dtypes.h"
+#include "stdlib/ndarray/index_modes.h"
+#include "stdlib/ndarray/orders.h"
+#include "stdlib/ndarray/base/bytes_per_element.h"
+#include <stdint.h>
+
+// Create an ndarray:
+const float data[] = { 1.0f, 3.0f, 4.0f, 2.0f };
+int64_t shape[] = { 4 };
+int64_t strides[] = { STDLIB_NDARRAY_FLOAT32_BYTES_PER_ELEMENT };
+int8_t submodes[] = { STDLIB_NDARRAY_INDEX_ERROR };
+
+struct ndarray *x = stdlib_ndarray_allocate( STDLIB_NDARRAY_FLOAT32, (uint8_t *)data, 1, shape, strides, 0, STDLIB_NDARRAY_ROW_MAJOR, STDLIB_NDARRAY_INDEX_ERROR, 1, submodes );
+
+// Compute the arithmetic mean:
+const struct ndarray *arrays[] = { x };
+float v = stdlib_stats_smeanli( arrays );
+// returns 2.5f
+
+// Free allocated memory:
+stdlib_ndarray_free( x );
+```
+
+The function accepts the following arguments:
+
+-   **arrays**: `[in] struct ndarray**` list containing a one-dimensional input ndarray.
+
+```c
+float stdlib_stats_smeanli( const struct ndarray *arrays[] );
+```
+
+</section>
+
+<!-- /.usage -->
+
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+
+<section class="notes">
+
+</section>
+
+<!-- /.notes -->
+
+<!-- C API usage examples. -->
+
+<section class="examples">
+
+### Examples
+
+```c
+#include "stdlib/stats/base/ndarray/smeanli.h"
+#include "stdlib/ndarray/ctor.h"
+#include "stdlib/ndarray/dtypes.h"
+#include "stdlib/ndarray/index_modes.h"
+#include "stdlib/ndarray/orders.h"
+#include "stdlib/ndarray/base/bytes_per_element.h"
+#include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+int main( void ) {
+    // Create a data buffer:
+    const float data[] = { 1.0f, -2.0f, 3.0f, -4.0f, 5.0f, -6.0f, 7.0f, -8.0f };
+
+    // Specify the number of array dimensions:
+    const int64_t ndims = 1;
+
+    // Specify the array shape:
+    int64_t shape[] = { 4 };
+
+    // Specify the array strides:
+    int64_t strides[] = { 2*STDLIB_NDARRAY_FLOAT32_BYTES_PER_ELEMENT };
+
+    // Specify the byte offset:
+    const int64_t offset = 0;
+
+    // Specify the array order:
+    const enum STDLIB_NDARRAY_ORDER order = STDLIB_NDARRAY_ROW_MAJOR;
+
+    // Specify the index mode:
+    const enum STDLIB_NDARRAY_INDEX_MODE imode = STDLIB_NDARRAY_INDEX_ERROR;
+
+    // Specify the subscript index modes:
+    int8_t submodes[] = { STDLIB_NDARRAY_INDEX_ERROR };
+    const int64_t nsubmodes = 1;
+
+    // Create an ndarray:
+    struct ndarray *x = stdlib_ndarray_allocate( STDLIB_NDARRAY_FLOAT32, (uint8_t *)data, ndims, shape, strides, offset, order, imode, nsubmodes, submodes );
+    if ( x == NULL ) {
+        fprintf( stderr, "Error allocating memory.\n" );
+        exit( 1 );
+    }
+
+    // Define a list of ndarrays:
+    const struct ndarray *arrays[] = { x };
+
+    // Compute the arithmetic mean:
+    float v = stdlib_stats_smeanli( arrays );
+
+    // Print the result:
+    printf( "mean: %f\n", v );
+
+    // Free allocated memory:
+    stdlib_ndarray_free( x );
+}
+```
+
+</section>
+
+<!-- /.examples -->
+
+</section>
+
+<!-- /.c -->
 
 * * *
 
@@ -154,7 +319,7 @@ console.log( v );
 
 ## Notice
 
-This package is part of [stdlib][stdlib], a standard library with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
+This package is part of [stdlib][stdlib], a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
 
 For more information on the project, filing bug reports and feature requests, and guidance on how to develop [stdlib][stdlib], see the main project [repository][stdlib].
 

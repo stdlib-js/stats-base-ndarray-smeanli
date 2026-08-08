@@ -4,7 +4,17 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2026-08-03)
+## Unreleased (2026-08-08)
+
+<section class="features">
+
+### Features
+
+-   [`8785193`](https://github.com/stdlib-js/stdlib/commit/87851930caa54e3162acb1fc1316434e74fbeb74) - add C implementation for `stats/base/ndarray/smeanli` [(#14017)](https://github.com/stdlib-js/stdlib/pull/14017)
+
+</section>
+
+<!-- /.features -->
 
 <section class="commits">
 
@@ -12,6 +22,7 @@
 
 <details>
 
+-   [`8785193`](https://github.com/stdlib-js/stdlib/commit/87851930caa54e3162acb1fc1316434e74fbeb74) - **feat:** add C implementation for `stats/base/ndarray/smeanli` [(#14017)](https://github.com/stdlib-js/stdlib/pull/14017) _(by Atharva Patange, Athan Reines)_
 -   [`5f56aa5`](https://github.com/stdlib-js/stdlib/commit/5f56aa58c2050ea8301fd1534a43e8660d147425) - **chore:** modernize examples and benchmarks _(by Athan Reines)_
 -   [`9a51841`](https://github.com/stdlib-js/stdlib/commit/9a51841213eb13adbd6b8fe36d96c00aac9fbb17) - **bench:** refactor to use string interpolation in `stats/base` [(#11393)](https://github.com/stdlib-js/stdlib/pull/11393) _(by Karan Anand)_
 
@@ -25,9 +36,10 @@
 
 ### Contributors
 
-A total of 2 people contributed to this release. Thank you to the following contributors:
+A total of 3 people contributed to this release. Thank you to the following contributors:
 
 -   Athan Reines
+-   Atharva Patange
 -   Karan Anand
 
 </section>

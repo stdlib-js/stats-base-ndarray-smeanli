@@ -1,7 +1,7 @@
-/**
+/*
 * @license Apache-2.0
 *
-* Copyright (c) 2026 The Stdlib Authors.
+* Copyright (c) 2025 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,16 +16,11 @@
 * limitations under the License.
 */
 
-'use strict';
+// TypeScript Version: 4.1
 
-// MODULES //
+/// <reference types="https://cdn.jsdelivr.net/gh/stdlib-js/types@esm/index.d.ts"/>
 
-var serialize = require( '@stdlib/ndarray-base-serialize-meta-data' );
-var getData = require( '@stdlib/ndarray-base-data-buffer' );
-var addon = require( './../src/addon.node' );
-
-
-// MAIN //
+import { float32ndarray } from '@stdlib/types/ndarray';
 
 /**
 * Computes the arithmetic mean of a one-dimensional single-precision floating-point ndarray using a one-pass trial mean algorithm.
@@ -36,9 +31,8 @@ var addon = require( './../src/addon.node' );
 *
 *     -   a one-dimensional input ndarray.
 *
-* @private
-* @param {ArrayLikeObject<Object>} arrays - array-like object containing ndarrays
-* @returns {number} arithmetic mean
+* @param arrays - array-like object containing ndarrays
+* @returns arithmetic mean
 *
 * @example
 * var Float32Vector = require( '@stdlib/ndarray-vector-float32' );
@@ -48,12 +42,9 @@ var addon = require( './../src/addon.node' );
 * var v = smeanli( [ x ] );
 * // returns 2.5
 */
-function smeanli( arrays ) {
-	var x = arrays[ 0 ];
-	return addon( getData( x ), serialize( x ) );
-}
+declare function smeanli( arrays: [ float32ndarray ] ): number;
 
 
 // EXPORTS //
 
-module.exports = smeanli;
+export = smeanli;
